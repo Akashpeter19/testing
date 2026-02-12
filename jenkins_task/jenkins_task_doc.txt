@@ -1,0 +1,74 @@
+JENKINS DEPLOYMENT ON AWS EC2 USING DOCKER
+
+OBJECTIVE
+
+To deploy Jenkins on an AWS EC2 instance and explore creating projects and users as part of a DevOps exercise.
+
+TECH STACK USED
+
+AWS EC2 (Ubuntu 22.04 LTS)
+
+Docker
+
+Jenkins (Official LTS Docker Image)
+
+GitHub
+
+STEPS PERFORMED
+
+Launched EC2 Instance
+
+Created Ubuntu 22.04 EC2 instance
+
+Configured Security Group:
+
+Port 22 (SSH)
+
+Port 8080 (Jenkins)
+
+Installed Docker
+
+Commands used:
+
+sudo apt update
+sudo apt install -y docker.io
+sudo systemctl start docker
+sudo systemctl enable docker
+
+Deployed Jenkins Using Docker
+
+Command used:
+
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+Accessed Jenkins
+
+Opened in browser:
+
+http://<EC2-PUBLIC-IP>:8080
+
+Retrieved admin password using:
+
+docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+Installed Suggested Plugins
+
+Completed Jenkins initial setup by installing recommended plugins.
+
+Created Jenkins Project
+
+Created a Freestyle project
+
+Added an Execute Shell build step
+
+Ran the build successfully
+
+Created Additional User
+
+Navigated to Manage Jenkins → Manage Users
+
+Created a new test user
+
+CONCLUSION
+
+Successfully deployed Jenkins on AWS EC2 using Docker, created a project, and managed users. This demonstrates basic DevOps knowledge of cloud deployment, containerization, and CI tool configuration.
